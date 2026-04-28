@@ -1,4 +1,4 @@
-from .views import UserViewSet
+from .views import UserViewSet, RegisterView
 from rest_framework.routers import DefaultRouter
 from django.urls import path, include
 
@@ -7,6 +7,9 @@ router = DefaultRouter()
 # searching for a .model attribute in your viewset.
 router.register(r'users', UserViewSet, basename='user')
 
+
+
 urlpatterns = [
     path('', include(router.urls)),
+    path('register/', RegisterView.as_view(), name='register'),
 ]

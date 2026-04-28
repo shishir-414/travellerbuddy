@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, generics
 from .models import User
-from .serializers import UserSerializer
+from .serializers import UserSerializer, RegisterSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer 
@@ -13,3 +13,8 @@ class UserViewSet(viewsets.ModelViewSet):
         if exp is not None:
             queryset = queryset.filter(experience=exp)
         return queryset
+
+class RegisterView(generics.CreateAPIView):
+    serializer_class = RegisterSerializer
+    permission_classes = [permissions.AllowAny]
+    

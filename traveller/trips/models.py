@@ -7,6 +7,9 @@ class Trek(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     difficulty = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
+    max_participants = models.PositiveIntegerField(default=10)
+    cost_per_person = models.DecimalField(max_digits=10, decimal_places=2)
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL, 
         on_delete=models.CASCADE, 
